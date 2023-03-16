@@ -1,7 +1,10 @@
 export class List {
-  constructor({ renderer }) {
+  constructor({ renderer }, { listSelector, titleSelector }) {
     this._renderer = renderer;
-    this._container = document.querySelector('.list');
+    this._listSelector = listSelector;
+    this._titleSelector = titleSelector;
+
+    this._container = document.querySelector(`.${this._listSelector}`);
   }
 
   _addRepository = repository => {
@@ -10,9 +13,9 @@ export class List {
 
   renderItems = list => {
     if (list.length === 0) {
-      document.querySelector('.list__title').textContent = 'Ничего не найдено';
+      document.querySelector(`.${this._titleSelector}`).textContent = 'Ничего не найдено';
     } else {
-      document.querySelector('.list__title').style.display = 'none';
+      document.querySelector(`.${this._titleSelector}`).style.display = 'none';
     }
 
     list.slice(0, 10).forEach(repository => {

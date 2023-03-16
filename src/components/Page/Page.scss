@@ -1,4 +1,28 @@
 $breakpointDesktop: 1024px;
+$sidePadding: 20px;
+$bordeRadius: $sidePadding;
+$blue: rgb(80, 160, 250);
+$blueShadow: rgba(80, 159, 250, 0.5);
+$redShadow: rgba(255, 0, 0, 0.5);
+$greyShadow: rgba(128, 128, 128, 0.5);
+
+@mixin editSectionBorder($bshw, $clr) {
+  border-radius: $bordeRadius;
+  box-shadow: 0 0 $bshw 0 $clr;
+}
+
+@mixin editTitle($fs, $lh, $fw, $clr) {
+  font-size: $fs;
+  line-height: $lh;
+  font-weight: $fw;
+  width: 100%;
+  color: $clr;
+}
+
+:focus {
+  outline: 2px solid orange;
+  box-shadow: 0 0 5px 0 orange;
+}
 
 .page {
   display: flex;
@@ -11,4 +35,15 @@ $breakpointDesktop: 1024px;
   font-size: 14px;
   line-height: 16px;
   color: black;
+  background-color: rgba(128, 128, 128, 0.1);
+
+  &__container {
+    margin: 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    width: 90%;
+    max-width: 720px;
+  }
 }

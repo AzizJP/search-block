@@ -1,14 +1,11 @@
 export class Search {
-  constructor(submitCallback, renderRepositories, repositories) {
+  constructor(submitCallback) {
     this._submitCallback = submitCallback;
-    this._renderRepositories = renderRepositories;
-    this._repositories = repositories;
   }
 
   _getInputValues = () => {
     let value = '';
     const inputElement = this._formElement.querySelector('.search__field');
-    console.log(inputElement);
     value = inputElement.value;
 
     return value;

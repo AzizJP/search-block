@@ -7,40 +7,42 @@
     <title>Блок поиска репозиториев Github</title>
   </head>
   <body class="page">
-    <section class="search">
-      <h2 class="search__title">Введите имя репозитория или его часть</h2>
-      <form class="search__form">
-        <div class="search__container">
-          <input
-            required
-            minlength="2"
-            maxlength="10"
-            type="text"
-            id="search__field"
-            class="search__field"
-            placeholder="Введите слово"
-          />
-          <label for="search__field"></label>
-        </div>
-        <button type="submit" class="search__button">Поиск</button>
-      </form>
-    </section>
-    <section class="list">
-      <h3 class="list__title">для отображения результатов произведите поиск</h3>
-      <template id="list">
-        <div class="repository">
-          <div class="repository__info">
-            <a href="#" class="repository__name" target="_blank">123</a>
-            <p id="created" class="repository__date">created at</p>
-            <p id="updated" class="repository__date">updated at</p>
+    <div class="page__container">
+      <section class="search">
+        <h2 class="search__title">Введите имя репозитория или его часть</h2>
+        <form novalidate class="search__form">
+          <div class="search__container">
+            <input
+              required
+              minlength="2"
+              maxlength="10"
+              type="text"
+              id="search__field"
+              class="search__field"
+              placeholder="Введите слово"
+            />
+            <label for="search__field" class="search__error-message"></label>
           </div>
-          <div class="repository__owner">
-            <h4 class="repository__owner-name">name</h4>
-            <img src="#" alt="repository owner avatar" class="repository__owner-avatar" />
-            <p class="repository__owner-type"></p>
+          <button type="submit" class="search__button">Поиск</button>
+        </form>
+      </section>
+      <section class="list">
+        <h3 class="list__title">Для отображения результатов произведите поиск...</h3>
+        <template id="list">
+          <div class="repository">
+            <div class="repository__info">
+              <a href="#" class="repository__name" target="_blank">123</a>
+              <p id="created" class="repository__date">created at</p>
+              <p id="updated" class="repository__date">updated at</p>
+            </div>
+            <a class="repository__owner" target="_blank">
+              <p class="repository__owner-type"></p>
+              <h4 class="repository__owner-name">name</h4>
+              <img src="#" alt="repository owner avatar" class="repository__owner-avatar" />
+            </a>
           </div>
-        </div>
-      </template>
-    </section>
+        </template>
+      </section>
+    </div>
   </body>
 </html>

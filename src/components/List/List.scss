@@ -1,6 +1,17 @@
+$listGap: 30px;
+
 .list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
+  gap: $listGap;
+  width: calc(100% - $sidePadding * 2);
+  background-color: white;
+  padding: $sidePadding;
+  @include editSectionBorder(5px, $greyShadow);
+
+  &__title {
+    @include editTitle(14px, 18px, normal, $blue);
+    text-align: center;
+  }
 }

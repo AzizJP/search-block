@@ -1,12 +1,15 @@
 import { changeWordEnding } from './Repository.helpers';
 
 export class Repository {
-  constructor() {}
+  constructor(templateId, cloneSelector) {
+    this._templateId = templateId;
+    this._cloneSelector = cloneSelector;
+  }
 
   _getRepositoryTemplate = () => {
     const repositoryElement = document
-      .querySelector('#list')
-      .content.querySelector('.repository')
+      .querySelector(`#${this._templateId}`)
+      .content.querySelector(`.${this._cloneSelector}`)
       .cloneNode(true);
     return repositoryElement;
   };
@@ -33,24 +36,36 @@ export class Repository {
     return `${this._yearsPassed} ${this._years} ${this._monthsPassed} ${this._months} ${this._daysPassed} ${this._days} назад`;
   };
 
-  generateRepository = ({ full_name, html_url, created_at, updated_at, owner }) => {
+  generateRepository = (
+    { full_name, html_url, created_at, updated_at, owner },
+    {
+      nameSelector,
+      createdId,
+      updatedId,
+      ownerSelector,
+      ownerNameSelector,
+      ownerAvatarSelector,
+      ownerTypeSelector,
+    },
+  ) => {
     this._repositoryElement = this._getRepositoryTemplate();
-    console.log(this._repositoryElement);
-    this._nameElement = this._repositoryElement.querySelector('.repository__name');
-    this._createdDateElement = this._repositoryElement.querySelector('#created');
-    this._updatedDateElement = this._repositoryElement.querySelector('#updated');
-    this._ownerNameElement = this._repositoryElement.querySelector('.repository__owner-name');
-    this._ownerAvatarElement = this._repositoryElement.querySelector('.repository__owner-avatar');
-    this._ownerTypeElement = this._repositoryElement.querySelector('.repository__owner-type');
+    this._nameElement = this._repositoryElement.querySelector(`.${nameSelector}`);
+    this._createdDateElement = this._repositoryElement.querySelector(`#${createdId}`);
+    this._updatedDateElement = this._repositoryElement.querySelector(`#${updatedId}`);
+    this._ownerElement = this._repositoryElement.querySelector(`.${ownerSelector}`);
+    this._ownerNameElement = this._repositoryElement.querySelector(`.${ownerNameSelector}`);
+    this._ownerAvatarElement = this._repositoryElement.querySelector(`.${ownerAvatarSelector}`);
+    this._ownerTypeElement = this._repositoryElement.querySelector(`.${ownerTypeSelector}`);
 
     this._nameElement.textContent = full_name;
     this._nameElement.href = html_url;
     this._createdDateElement.textContent = `Создан: ${this._timePassedSince(created_at)}`;
     this._updatedDateElement.textContent = `Обновлён: ${this._timePassedSince(updated_at)}`;
 
+    this._ownerElement.href = owner.html_url;
     this._ownerNameElement.textContent = owner.login;
     this._ownerAvatarElement.src = owner.avatar_url;
-    this._ownerTypeElement.textContent = owner.type;
+    this._ownerTypeElement.textContent = `${owner.type}:`;
 
     return this._repositoryElement;
   };
